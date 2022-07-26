@@ -1,6 +1,7 @@
 const expres=require("express");
 const app=expres();
 const db=require("./db");
+const { deleteOne } = require("./todo");
 const Todo=require("./todo");
 console.log(Todo);
 //app.use(expres.json);
@@ -20,8 +21,9 @@ app.use(expres.json());
     });
   });
 
+
  app.post('/tasks',(req,res)=>{
-        console.log("24:",req.body)
+        console.log("25:",req.body)
 
      Todo.create(req.body,(err,newTask)=>{
             if(err){
@@ -32,6 +34,40 @@ app.use(expres.json());
         }) 
         
  })
+ app.delete('/tasks/:id',(req,res)=>{
+    console.log("37:",req.params.id)
+
+ Todo.deleteOne({_id: req.params.id},(err,deleteObj)=>{
+        if(err){
+            console.log('ERROR: ',err)
+        }else{
+            console.log(deleteObj);
+            deleteOne.deletedCount === 1
+            ? res.json("delete this todo successfully")
+            :res.status(404).json("this todo is not found")
+        }
+    }) 
+    
+})
+
+app.put('/tasks/:id',(req,res)=>{
+    //console.log("37:",req.params.id)
+
+ Todo.updateOne({_id: req.params.id},
+    {title: req.body.newTitle},(err,updateObj)=>{
+        if(err){
+            console.log('ERROR: ',err)
+            res.status(400).json(err);
+        }else{
+            console.log(updateObj);
+          updateObj.modifiedCount === 1
+            ? res.json("update this todo successfully")
+            :res.status(404).json("this todo is not found")
+            
+        }
+    }) 
+    
+})
 
 
 
