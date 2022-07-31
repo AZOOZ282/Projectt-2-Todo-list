@@ -1,5 +1,7 @@
 const { json } = require("express");
 const expres=require("express");
+const cors=require("cors");
+
 const app=expres();
 const db=require("./db");
 const { deleteOne } = require("./todo");
@@ -7,6 +9,7 @@ const Todo=require("./todo");
 console.log(Todo);
 //app.use(expres.json);
 app.use(expres.json());
+app.use(cors());
 
  app.get('/',(req,res)=>{
     res.json('GET / is Working')
