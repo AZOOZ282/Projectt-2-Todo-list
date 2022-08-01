@@ -33,14 +33,29 @@ const postNewTodo=(body)=>{
     //console.log("Response: ",response)
     console.log("DATA: ",response.data)
     //setTasks(response.data)
-  getData()
+  getData();
   })
   .catch((err) =>{
     console.log("ERR: ",err)
   });
 }
+
+const deleteTodo=(id)=>{
+  axios
+   .delete(`http://localhost:5000/tasks/${id}`)
+   .then((response)=>{
+     //console.log("Response: ",response)
+     console.log("DATA: ",response.data)
+     //setTasks(response.data)
+   getData();
+   })
+   .catch((err) =>{
+     console.log("ERR: ",err)
+     getData();
+   });
+  };
 const mapOverTasks=tasks.map((taskObj,i)=>(
-<Todo key={i} task={taskObj}/>
+<Todo key={i} task={taskObj} deleteTodo={deleteTodo}/>
 ));
   return (
     <div className="App">
