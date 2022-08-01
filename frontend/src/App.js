@@ -70,14 +70,53 @@ const deleteTodo=(id)=>{
      });
     };
 
+const deleteTasks=(id)=>{
+  axios
+   .delete(`http://localhost:5000/tasks`)
+   .then((response)=>{
+     //console.log("Response: ",response)
+     console.log("DATA: ",response.data)
+     //setTasks(response.data)
+   getData();
+   })
+   .catch((err) =>{
+     console.log("ERR: ",err)
+     getData();
+   });
+  };
+
+  const filterData=(status)=>{
+    axios
+    .get(`http://localhost:5000/filter?isCompleted=${status}`)
+    .then((response)=>{
+      //console.log("Response: ",response)
+      console.log("DATA: ",response.data)
+      setTasks(response.data)
+    })
+    .catch((err) =>{
+      console.log("ERR: ",err)
+    });
+  };
+  
+
 const mapOverTasks=tasks.map((taskObj,i)=>(
-<Todo key={i} task={taskObj} deleteTodo={deleteTodo} 
+<Todo 
+key={taskObj._id} 
+task={taskObj} 
+deleteTodo={deleteTodo} 
 toggleTodo={toggleTodo}/>
 ));
   return (
     <div className="App">
       <p>app</p>
       <button onClick={getData}>GET TASKS</button>
+      <button onClick={deleteTasks}>DLELETE ALL TASKS Completed</button>
+      <button onClick={()=>{
+        filterData(true)
+      }}>GET DONE</button>
+      <button onClick={()=>{
+        filterData(false)
+      }}>GET PENDING</button>
       <Add createFunc={postNewTodo}/>
       
     {mapOverTasks}
