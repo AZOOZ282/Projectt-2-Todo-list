@@ -54,8 +54,25 @@ const deleteTodo=(id)=>{
      getData();
    });
   };
+
+  const toggleTodo=(id,newStatus)=>{
+    axios
+     .put(`http://localhost:5000/tasks/${id}/${newStatus}`)
+     .then((response)=>{
+       //console.log("Response: ",response)
+       console.log("DATA: ",response.data)
+       //setTasks(response.data)
+     getData();
+     })
+     .catch((err) =>{
+       console.log("ERR: ",err)
+       
+     });
+    };
+
 const mapOverTasks=tasks.map((taskObj,i)=>(
-<Todo key={i} task={taskObj} deleteTodo={deleteTodo}/>
+<Todo key={i} task={taskObj} deleteTodo={deleteTodo} 
+toggleTodo={toggleTodo}/>
 ));
   return (
     <div className="App">
