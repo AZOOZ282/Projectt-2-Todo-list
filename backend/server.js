@@ -6,6 +6,8 @@ const app=expres();
 const db=require("./db");
 const { deleteOne } = require("./todo");
 const Todo=require("./todo");
+const User=require("./user");
+
 console.log(Todo);
 //app.use(expres.json);
 app.use(expres.json());
@@ -142,6 +144,43 @@ app.put('/tasks/:id/:isCompleted',(req,res)=>{
     
 });
 
+app.post('/users/register',(req,res)=>{
+ User.create(req.body,(err,newUser)=>{
+        if(err){
+            console.log('ERROR: ',err)
+            res.status(400).json({massage:"This email already teken"})
+        }else{
+            res.status(201).json(
+            {massage: "Create New User Succssfully"})
+        }
+    }) 
+    
+})
+
+app.post('/users/login',(req,res)=>{ 
+    User.find({email:req.body.email},(err,arrUserFound)=>{
+        if(err){
+            console.log('ERROR: ',err)
+        }else{
+         console.log(arrUserFound)
+         
+          if (arrUserFound.length === 1) {
+            if (req.body.password=== arrUserFound[0].password) {
+                res.status(200).json({massage: "Login Successfully",username:arrUserFound[0].username})
+
+            } else {
+                res.status(400).json(
+                {massage: "wrong password"}
+                )
+
+            }
+
+          } else if(arrUserFound.length === 0){
+            res.status(404).json({massage: "The email entered is not registered"})
+          }
+        }
+    });
+  });
 
  app.listen(5000,()=>{
 console.log('SERVER IS WORKING')

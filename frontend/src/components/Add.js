@@ -13,7 +13,7 @@ onChange={(e)=>{
     setNewTitle(e.target.value)
 
 }}/>
-<button onClick={createNewTodo}>Create New Todo</button>
+<button onClick={createNewTodo}>Create New Task</button>
 </div>
     )
 }
