@@ -151,7 +151,7 @@ app.post('/users/register',(req,res)=>{
             res.status(400).json({massage:"This email already teken"})
         }else{
             res.status(201).json(
-            {massage: "Create New User Succssfully"})
+            {massage: "Create New User Succssfully" })
         }
     }) 
     
