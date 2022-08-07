@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import axios from "axios";
+import {Routes,Route,Link } from "react-router-dom";
+
 import Todo from "./components/Todo";
 import Add from "./components/Add";
 import Register from "./components/Register";
@@ -111,20 +113,34 @@ toggleTodo={toggleTodo}/>
 ));
   return (
     <div className="App">
-      <p>app</p>
-      <button onClick={getData}>GET TASKS</button>
-      <button onClick={deleteTasks}>DLELETE ALL TASKS Completed</button>
-      <button onClick={()=>{
-        filterData(true)
-      }}>GET DONE</button>
-      <button onClick={()=>{
-        filterData(false)
-      }}>GET PENDING</button>
-      <Register/>
-      <Login/>
-     {/* <Add createFunc={postNewTodo}/>*/ } 
-      
-   {/*{mapOverTasks}*/ } 
+      <p>APP</p>
+
+<Routes>
+  <Route path="/home" element={
+    <div className='Home'>
+    <button onClick={getData}>GET TASKS</button>
+    <button onClick={deleteTasks}>DLELETE ALL TASKS Completed</button>
+    <button onClick={()=>{
+      filterData(true)
+    }}>GET DONE</button>
+    <button onClick={()=>{
+      filterData(false)
+    }}>GET PENDING</button>
+   <Add createFunc={postNewTodo}/>
+ {mapOverTasks}
+  </div>
+}/>
+  <Route path="/login" element={<Login/>}/>
+  <Route path="/register" element={<Register/>}/>
+</Routes>
+
+<nav>
+        <Link to="/home">Home</Link>{" | "}
+        <Link to="/login">Login </Link>{" | "}
+        <Link to="/register">Register </Link>
+      </nav>
+  
+      {/**/}
     </div>
   );
 };
