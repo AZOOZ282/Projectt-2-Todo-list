@@ -11,8 +11,8 @@ import Login from "./components/Login";
 
 export default function App() {
 const [tasks, setTasks]=useState([])
-
-
+const [isLoggdin, setIsLoggdin] = useState(false)
+const [username, setUsername] = useState(second)
 useEffect(()=>{
   getData();
 },[])
@@ -130,7 +130,10 @@ toggleTodo={toggleTodo}/>
  {mapOverTasks}
   </div>
 }/>
-  <Route path="/login" element={<Login/>}/>
+  <Route path="/login" element={<Login
+  setIsLoggdin={setIsLoggdin}
+  setUsername={setUsername} />
+  }/>
   <Route path="/register" element={<Register/>}/>
 </Routes>
 
