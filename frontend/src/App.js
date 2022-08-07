@@ -4,6 +4,7 @@ import axios from "axios";
 import Todo from "./components/Todo";
 import Add from "./components/Add";
 import Register from "./components/Register";
+import Login from "./components/Login";
 
 
 export default function App() {
@@ -120,6 +121,7 @@ toggleTodo={toggleTodo}/>
         filterData(false)
       }}>GET PENDING</button>
       <Register/>
+      <Login/>
      {/* <Add createFunc={postNewTodo}/>*/ } 
       
    {/*{mapOverTasks}*/ } 

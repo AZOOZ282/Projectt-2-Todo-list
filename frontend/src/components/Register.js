@@ -1,9 +1,9 @@
 import React ,{useState} from 'react'
 import axios from 'axios';
 export default function Register() {
-    const [email, setEmail] = useState("azooz@gmail.com");
-    const [password, setPassword] = useState("12345");
-    const [username, setUsername] = useState("azooz282");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
 const registerFunc =(e)=>{
     e.preventDefault();
     console.log("reg")
@@ -20,14 +20,12 @@ const registerFunc =(e)=>{
     .catch((err) =>{
       console.log("ERR: ",err)
     });
-    
-
 }
 
 
   return (
     <div className='Register' >
-        <from>
+        <form>
             <label htmlFor='email'>Email:</label>
 <input type="email" placeholder='Write email here'onChange={(e)=>{
     setEmail(e.target.value)
@@ -47,7 +45,7 @@ value={password}/>
 value={username}/>
 <br/>
 <input type="submit" value='Register' onClick={registerFunc}/>
-</from>
+</form>
     </div>
   )
 }
