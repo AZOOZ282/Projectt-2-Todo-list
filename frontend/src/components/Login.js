@@ -54,21 +54,21 @@ className="btn btn-primary"/>
 <Link to="/register">Don't Have An Account?</Link>
 </form>*/}
 <form>
-<div class="form-floating mb-3">
-  <input type="email" class="form-control" id="floatingInput"  
+<div className="form-floating mb-3">
+  <input type="email" className="form-control" id="floatingInput"  
   onChange={(e)=>{
     setEmail(e.target.value)
 }}
 value={email}/>
-  <label for="floatingInput">Email address</label>
+  <label htmlFor="floatingInput">Email address</label>
 </div>
-<div class="form-floating">
-  <input type="password" class="form-control" id="floatingPassword" 
+<div className="form-floating">
+  <input type="password" className="form-control" id="floatingPassword" 
   onChange={(e)=>{
     setPassword(e.target.value)
 }} 
 value={password}/>
-  <label for="floatingPassword">Password</label>
+  <label htmlFor="floatingPassword">Password</label>
 </div>
 <div className='text-center'>
 <input type="submit" value='Login' onClick={loginFunc} 
