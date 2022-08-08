@@ -12,7 +12,7 @@ import Login from "./components/Login";
 export default function App() {
 const [tasks, setTasks]=useState([])
 const [isLoggdin, setIsLoggdin] = useState(false)
-const [username, setUsername] = useState(second)
+const [username, setUsername] = useState("")
 useEffect(()=>{
   getData();
 },[])
@@ -102,8 +102,13 @@ const deleteTasks=(id)=>{
       console.log("ERR: ",err)
     });
   };
-  
 
+const logoutFunc =()=>{
+  setIsLoggdin(false);
+  setUsername("");
+  console.log(67)
+}
+  
 const mapOverTasks=tasks.map((taskObj,i)=>(
 <Todo 
 key={taskObj._id} 
@@ -115,7 +120,47 @@ toggleTodo={toggleTodo}/>
     <div className="App">
       <p>APP</p>
 
-<Routes>
+<p>Name:{username}</p>
+<nav className="navbar navbar-expand-lg navbar-light bg-light m-3">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">
+            Todos
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link to="/home" className="nav-link">
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/login" className="nav-link">
+                  Login
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/register" className="nav-link">
+                  Register
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <button onClick={logoutFunc} className="">Logout</button>
+
+      <Routes>
   <Route path="/home" element={
     <div className='Home'>
     <button onClick={getData}>GET TASKS</button>
@@ -137,12 +182,6 @@ toggleTodo={toggleTodo}/>
   <Route path="/register" element={<Register/>}/>
 </Routes>
 
-<nav>
-        <Link to="/home">Home</Link>{" | "}
-        <Link to="/login">Login </Link>{" | "}
-        <Link to="/register">Register </Link>
-      </nav>
-  
       {/**/}
     </div>
   );

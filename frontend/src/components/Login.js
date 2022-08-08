@@ -3,8 +3,8 @@ import axios from 'axios';
 import {Link } from "react-router-dom";
 export default function Login(props) {
 
-    const [email, setEmail] = useState("azooz@gmail.com");
-    const [password, setPassword] = useState("12345");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const loginFunc =(e)=>{
         e.preventDefault();
@@ -49,8 +49,8 @@ value={password}
 <br/>
 
 
-<input type="submit" value='Login'onClick={loginFunc}
-/>
+<input type="submit" value='Login' onClick={loginFunc} 
+className="btn btn-primary"/>
 <Link to="/register">Don't Have An Account?</Link>
 </form>
 
