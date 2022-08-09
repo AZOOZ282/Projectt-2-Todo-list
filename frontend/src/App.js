@@ -16,6 +16,8 @@ const [username, setUsername] = useState("")
 useEffect(()=>{
   getData();
 },[])
+console.log(isLoggdin)
+
 
 const getData=()=>{
   axios
@@ -106,7 +108,7 @@ const deleteTasks=(id)=>{
 const logoutFunc =()=>{
   setIsLoggdin(false);
   setUsername("");
-  console.log(67)
+  
 }
   
 const mapOverTasks=tasks.map((taskObj,i)=>(
@@ -116,11 +118,11 @@ task={taskObj}
 deleteTodo={deleteTodo} 
 toggleTodo={toggleTodo}/>
 ));
-  return (
-    <div className="App">
-      <p>APP</p>
 
-<p>Name:{username}</p>
+  return (
+    <div className="m-3">
+
+
 <nav className="navbar navbar-expand-lg navbar-light bg-light m-3">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
@@ -154,25 +156,52 @@ toggleTodo={toggleTodo}/>
                   Register
                 </Link>
               </li>
+              
             </ul>
           </div>
         </div>
       </nav>
-      <button onClick={logoutFunc} className="">Logout</button>
+
+
+<div className='m-3' id='aa'>
+
+
+<button onClick={logoutFunc} 
+className="btn btn-info m-3"
+>Logout</button>
+
+<button
+          type="button"
+          class="btn btn btn-dark"
+          data-bs-toggle="popover"
+          title="Todo List"
+          data-bs-content="Welcome to Todo List Web Application"
+        >
+          {isLoggdin ? "Welcome " + isLoggdin : "Please Login"}{" "}
+        </button>
+
+
+</div>
+
 
       <Routes>
   <Route path="/home" element={
-    <div className='Home'>
-    <button onClick={getData}>GET TASKS</button>
-    <button onClick={deleteTasks}>DLELETE ALL TASKS Completed</button>
+    <div className='Home m-3' >
+      <div id='aa'>
+    <button onClick={getData}className="btn btn-primary m-1">ALL TASKS</button>
+    <button onClick={deleteTasks} className="btn btn-danger m-1">DLELETE Completed TASKS</button>
     <button onClick={()=>{
       filterData(true)
-    }}>GET DONE</button>
+    }} className="btn btn-outline-success m-1">DONE</button>
     <button onClick={()=>{
       filterData(false)
-    }}>GET PENDING</button>
+    }} className="btn btn-warning m-1">PENDING</button>
+    </div>
+
    <Add createFunc={postNewTodo}/>
+   <div className='list-group'>
  {mapOverTasks}
+ </div>
   </div>
 }/>
   <Route path="/login" element={<Login
@@ -181,6 +210,8 @@ toggleTodo={toggleTodo}/>
   }/>
   <Route path="/register" element={<Register/>}/>
 </Routes>
+
+
 
       {/**/}
     </div>
