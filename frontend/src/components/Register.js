@@ -26,30 +26,40 @@ const registerFunc =(e)=>{
 
 
   return (
-    <div className='Register' >
-        <form>
-            <label htmlFor='email'>Email:</label>
-<input type="email" placeholder='Write email here'onChange={(e)=>{
+    <div className='mt-3 Login d-flex justify-content-center' >
+        <form className=''>
+        <div className="form-floating mb-3 hy">
+  <input type="email" className="form-control" id="floatingInput"  
+  onChange={(e)=>{
     setEmail(e.target.value)
 }}
 value={email}/>
-<br/>
-<label htmlFor='password'>Password:</label>
-<input type="password"placeholder='Write password here' onChange={(e)=>{
-    setPassword(e.target.value)
-}}
-value={password}/>
-<br/>
-<label htmlFor='username'>Username:</label>
-<input type="text"placeholder='Write user name here' onChange={(e)=>{
-    setUsername(e.target.value)
-}}
-value={username}/>
-<br/>
-<input type="submit" value='Register' onClick={registerFunc}
-className="btn btn-secondary"/>
-<Link to="/login">Have An Account?</Link>
+  <label htmlFor="floatingInput">Email address</label>
+</div>
 
+<div className="form-floating">
+  <input type="password" className="form-control" id="floatingPassword" 
+  onChange={(e)=>{
+    setPassword(e.target.value)
+}} 
+value={password}/>
+  <label htmlFor="floatingPassword">Password</label>
+</div>
+<br/>
+<div className="form-floating">
+  <input type="text" className="form-control" id="floatingInput" 
+  onChange={(e)=>{
+    setUsername(e.target.value)
+}} 
+value={username}/>
+  <label htmlFor="floatingInput">Username</label>
+</div>
+<br/>
+<div className='text-center'>
+<input type="submit" value='Register' onClick={registerFunc}
+className="btn btn-primary oo"/>
+<Link to="/login"> Have An Account?</Link>
+</div>
 </form>
     </div>
   )

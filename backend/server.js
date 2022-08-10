@@ -156,7 +156,7 @@ app.post('/users/register',(req,res)=>{
     }) 
     
 })
-
+let a=0;
 app.post('/users/login',(req,res)=>{ 
     User.find({email:req.body.email},(err,arrUserFound)=>{
         if(err){
@@ -167,16 +167,18 @@ app.post('/users/login',(req,res)=>{
           if (arrUserFound.length === 1) {
             if (req.body.password=== arrUserFound[0].password) {
                 res.status(200).json({massage: "Login Successfully",username:arrUserFound[0].username})
-
+           
             } else {
                 res.status(400).json(
                 {massage: "wrong password"}
+        
                 )
 
             }
 
           } else if(arrUserFound.length === 0){
             res.status(404).json({massage: "The email entered is not registered"})
+          
           }
         }
     });

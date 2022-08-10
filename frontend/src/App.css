@@ -2,7 +2,7 @@
 .App {
 border: red solid 5px;
 }
-.Todo ,.Login{
+.Todo {
   border: blue solid 3px;
 
   }
@@ -10,7 +10,7 @@ border: red solid 5px;
     margin: 0px 10px;
     
   }
-  .Add ,.Register{
+  .Add {
     border: green solid 3px;
 
     }
@@ -20,3 +20,11 @@ border: red solid 5px;
       align-items: center;
       margin-left:-20px ;
     }
+
+    .Login form{
+      max-width: 75%;
+   
+    }
+.hy{
+  width: 400px;
+}

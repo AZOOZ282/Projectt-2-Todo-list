@@ -166,13 +166,16 @@ toggleTodo={toggleTodo}/>
 <div className='m-3' id='aa'>
 
 
+
+
 <button onClick={logoutFunc} 
 className="btn btn-info m-3"
 >Logout</button>
-
 <button
+
+
           type="button"
-          class="btn btn btn-dark"
+          className="btn btn btn-dark"
           data-bs-toggle="popover"
           title="Todo List"
           data-bs-content="Welcome to Todo List Web Application"
